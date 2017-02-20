@@ -263,7 +263,9 @@
 
 
                 var e = $.Event('hide.' + pluginType);
-                this.$element.trigger(e, [this.$target]);
+                // hb: we pass the origianal element which cause the hiding when triggering the hide the element
+                // this.$element.trigger(e, [this.$target]);
+                this.$element.trigger(e, [this.$target,event.currentTarget]);
                 if (this.$target) {
                     this.$target.removeClass('in').addClass(this.getHideAnimation());
                     var that = this;
@@ -315,7 +317,10 @@
                         self = this.delegate(e.currentTarget);
                     }
                 }
-                self[self.getTarget().hasClass('in') ? 'hide' : 'show']();
+                // hb: pass force = true and pass the event who triggered the hide/show
+                // self[self.getTarget().hasClass('in') ? 'hide' : 'show']();
+                self[self.getTarget().hasClass('in') ? 'hide' : 'show'](true,e);
+
             },
             hideAll: function() {
                 hideAllPop();
