@@ -264,8 +264,7 @@
 
                 var e = $.Event('hide.' + pluginType);
                 // hb: we pass the origianal element which cause the hiding when triggering the hide the element
-                // this.$element.trigger(e, [this.$target]);
-                this.$element.trigger(e, [this.$target,event.currentTarget]);
+                this.$element.trigger(e, [this.$target,(event ? event.currentTarget : null)]);
                 if (this.$target) {
                     this.$target.removeClass('in').addClass(this.getHideAnimation());
                     var that = this;
