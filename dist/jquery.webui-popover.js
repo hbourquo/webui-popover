@@ -244,7 +244,7 @@
                 param: event    dom event,
             */
             hide: function(force, event) {
-
+                clearTimeout(this._enterTimeout); //hb: when hide is called programmatically, stop the delayed show 
                 if (!force && this.getTrigger() === 'sticky') {
                     return;
                 }
